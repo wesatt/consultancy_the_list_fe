@@ -9,4 +9,12 @@ class UserService < BaseService
     response = conn_list.get("users/#{id}")
     data = get_json(response)[:data]
   end
+
+  def self.post_user(user_data)
+    response = conn_list.post('users') do |req|
+      req.params['user'] = user_data
+      req.headers['Content-Type'] = 'application/json'
+    end
+    data = get_json(response)[:data]
+  end
 end
