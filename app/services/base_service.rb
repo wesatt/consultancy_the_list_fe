@@ -1,6 +1,6 @@
 class BaseService
   def self.conn_list
-    Faraday.new(url: "http://localhost:3000/api/v1/")
+    Faraday.new(url: "https://the-list-be.herokuapp.com/api/v1/")
   end
 
   def self.get_json(response)
