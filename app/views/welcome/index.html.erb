@@ -7,5 +7,5 @@
 </div>
   <%= image_tag 'https://www.indiewire.com/wp-content/uploads/2020/11/MSDROCK_EC013.jpg' %>
 
-  <%= button_to "Sign in or sign up with Google", "/auth/google_oauth2", method: :get %>
+  <%= button_to 'Sign in or sign up with Google', '/auth/google_oauth2/', method: :get, params: {client_id: "#{ENV['GOOGLE_CLIENT_ID']}" }  %>
 </center>
