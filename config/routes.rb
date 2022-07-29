@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'auth/google_oauth2/callback', to: 'users#show'
   namespace :search do
-    get '/books', to: 'books#index'    
+    get '/books', to: 'books#index'
   end
+
+  get '/dashboard', to: 'dashboard#index'
 end
