@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'auth/google_oauth2/callback', to: 'users#show'
+
   namespace :search do
     get '/books', to: 'books#index'
   end
