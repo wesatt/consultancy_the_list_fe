@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MovieService do
+RSpec.describe MovieService, :vcr do
   describe 'connection' do
     it 'establishes the connection to The Movie Database' do
       expect(MovieService.conn_tmdb).to be_a(Faraday::Connection)
@@ -13,7 +13,7 @@ RSpec.describe MovieService do
 
       expect(json_return).to be_a(Array)
       expect(json_return.first).to be_a(Hash)
-      expect(json_return.first).to include(:title, :runtime, :poster_path, :overview, :genres, :vote_average)
+      expect(json_return.first).to include(:id, :title, :poster_path, :overview, :vote_average)
     end
 
     it '.movie_lookup(id) returns a json for the specific movie' do
@@ -28,8 +28,7 @@ RSpec.describe MovieService do
 
       expect(json_return).to be_a(Array)
       expect(json_return.first).to be_a(Hash)
-      expect(json_return.first).to include(:title, :runtime, :poster_path, :overview, :genres, :vote_average)
-
+      expect(json_return.first).to include(:id, :title, :poster_path, :overview, :vote_average)
     end
   end
 end
