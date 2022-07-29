@@ -41,6 +41,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'simplecov'
 end
 
