@@ -10,7 +10,7 @@ class MovieService < BaseService
     get_json(response)
   end
 
-  def self.search_movies(search_params)
+  def self.movie_search(search_params)
     response = conn_tmdb.get("search/movie?query=#{search_params}")
     json = get_json(response)
     json[:results]

@@ -23,8 +23,8 @@ RSpec.describe MovieService, :vcr do
       expect(json_return).to include(:title, :runtime, :poster_path, :overview, :genres, :vote_average)
     end
 
-    it '.search_movies(arg) returns a json for the specified arguments' do
-      json_return = MovieService.search_movies('dracula')
+    it '.movie_search(arg) returns a json for the specified arguments' do
+      json_return = MovieService.movie_search('dracula')
 
       expect(json_return).to be_a(Array)
       expect(json_return.first).to be_a(Hash)
