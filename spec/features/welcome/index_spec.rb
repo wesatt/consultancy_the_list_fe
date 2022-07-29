@@ -1,4 +1,5 @@
 require 'rails_helper'
+# save_and_open_page
 
 RSpec.describe "Welcome Page", type: :feature do
   it 'has an About Us section with info about the app' do
@@ -10,9 +11,8 @@ RSpec.describe "Welcome Page", type: :feature do
       expect(page).to have_content("An app to recommend and share your favorite books and movies with friends! Register or log in with Google.")
     end
     expect(page).to_not have_content("Logout")
-# save_and_open_page
+  end
 
-RSpec.describe 'Welcome page', type: :feature do
   describe 'Google Oauth' do
     it 'has a button to login or sign up with google' do
       visit '/'
