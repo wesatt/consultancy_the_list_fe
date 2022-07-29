@@ -1,0 +1,7 @@
+<h1>Search The List For A Book To Recommend!</h1>
+
+<%= form_with url: "/search/books", method: :get, local: true do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.submit "Search Titles" %>
+<% end %>
