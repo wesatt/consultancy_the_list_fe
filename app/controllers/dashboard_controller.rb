@@ -1,9 +1,7 @@
 class DashboardController < ApplicationController
+  before_action :session_auth
+
   def index
-    if session[:user]
-      @user = session[:user]
-    else
-      redirect_to '/', notice: 'Please login before trying to navigate'
-    end
+    @user = session[:user]
   end
 end
