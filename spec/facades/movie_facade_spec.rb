@@ -9,14 +9,14 @@ RSpec.describe MovieFacade, :vcr do
       expect(movies).to be_all(Movie)
     end
 
-    xit '.movie_lookup(id) returns a single movie poros for the given id' do
+    it '.movie_lookup(id) returns a single movie poros for the given id' do
       movie = MovieFacade.movie_lookup(11_868)
 
       expect(movie).to be_a(Movie)
     end
 
-    xit '.search_movies(search_params) returns an array of movie poros matching the given params' do
-      movies = MovieFacade.search_movies('dracula')
+    it '.movie_search(search_params) returns an array of movie poros matching the given params' do
+      movies = MovieFacade.movie_search('dracula')
 
       expect(movies).to be_a(Array)
       expect(movies).to be_all(Movie)

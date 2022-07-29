@@ -9,15 +9,15 @@ RSpec.describe 'Welcome page', type: :feature do
       expect(page).to have_button('Sign in or sign up with Google')
     end
 
-    xit 'sign in button redirects to google oauth page', :vcr do
-      visit '/'
+    # xit 'sign in button redirects to google oauth page', :vcr do
+    #   visit '/'
 
-      click_button('Sign in or sign up with Google')
+    #   click_button('Sign in or sign up with Google')
 
-      # Capybara.current_driver = :selenium
-      # Capybara.app_host = 'https://www.accounts.google.com'
+    #   # Capybara.current_driver = :selenium
+    #   # Capybara.app_host = 'https://www.accounts.google.com'
 
-      expect(page).to have_current_path("https://accounts.google.com/o/auth/google_oauth2")
-    end
+    #   expect(page).to have_current_path("https://accounts.google.com/o/auth/google_oauth2")
+    # end
   end
 end
