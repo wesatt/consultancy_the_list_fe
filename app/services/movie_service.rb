@@ -1,2 +1,2 @@
-class MovieService
+class MovieService < BaseService
 end
