@@ -4,7 +4,7 @@ RSpec.describe 'Movies Search Index Page', type: :feature do
   #before(:each) do
     #allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
   #end
-  ##this is how we spoof passing the session auth! 
+  ##this is how we spoof passing the session auth!
   xit 'has a form to search movies by title' do
     visit '/search/movies'
 
