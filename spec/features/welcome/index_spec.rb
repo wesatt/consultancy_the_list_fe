@@ -35,4 +35,20 @@ RSpec.describe 'Welcome Page', type: :feature do
       expect(page).to have_current_path('/dashboard')
     end
   end
+
+  describe 'sad paths' do
+    it 'will display error message on home after a failed session auth' do
+      visit '/dashboard'
+
+      expect(page).to have_current_path('/')
+      expect(page).to have_content('Please login before trying to navigate')
+    end
+
+    it 'will display error message on home after failed session auth on different page' do
+      visit '/search/books'
+
+      expect(page).to have_current_path('/')
+      expect(page).to have_content('Please login before trying to navigate')
+    end
+  end
 end
