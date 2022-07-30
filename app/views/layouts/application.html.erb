@@ -11,9 +11,6 @@
   </head>
 
   <body>
-    <% if !@user.nil? %>
-        <%= button_to "Log Out", "/", method: :delete  %>
-    <% end %>
     <center>
       <% flash.each do |type, message| %>
         <p><%= message %></p>
