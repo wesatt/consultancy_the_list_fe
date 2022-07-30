@@ -20,15 +20,19 @@ RSpec.describe "Welcome Page", type: :feature do
       expect(page).to have_button('Login with Google')
     end
 
-    # xit 'sign in button redirects to google oauth page', :vcr do
-    #   visit '/'
+    it 'sign in button redirects to google oauth page', :vcr do
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.silence_get_warning = true
+      OmniAuth.config.mock_auth[:google_oauth2] =
+        OmniAuth::AuthHash.new(omni_auth_hash)
 
-    #   click_button('Sign in or sign up with Google')
+      visit '/'
 
-    #   # Capybara.current_driver = :selenium
-    #   # Capybara.app_host = 'https://www.accounts.google.com'
+      click_button('Login with Google')
 
-    #   expect(page).to have_current_path("https://accounts.google.com/o/auth/google_oauth2")
-    # end
+      save_and_open_page
+
+      expect(page).to have_current_path('/dashboard')
+    end
   end
 end
