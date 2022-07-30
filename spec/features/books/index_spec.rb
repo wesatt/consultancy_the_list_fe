@@ -24,7 +24,7 @@ RSpec.describe "Books search results page", type: :feature do
       expect(page).to have_link("The Book Thief")
       click_link("The Book Thief")
 
-      expect(page).to have_current_path('/books/works/OL5819456W') #identifier from api as id
+      expect(page).to have_current_path('/books/OL5819456W') #identifier from api as id
     end
   end
 end
