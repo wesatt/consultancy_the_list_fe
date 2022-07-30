@@ -6,6 +6,6 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = BookFacade.create_book_details(params[:id])
   end
-
 end
