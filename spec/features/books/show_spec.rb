@@ -8,7 +8,6 @@ RSpec.describe "Books show page", type: :feature do
 
   it 'displays more details about a single book', :vcr do
     visit '/books/LnVPj0lN0eIC'
-    save_and_open_page
 
     expect(page).to have_content("Krampus")
     expect(page).to have_content("The Yule Lord")
