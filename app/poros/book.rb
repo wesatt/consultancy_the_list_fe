@@ -1,16 +1,14 @@
 class Book
-  attr_reader :key,
+  attr_reader :id,
               :title,
-              :author
+              :author,
+              :description
 
   def initialize(data)
-    @key = format_key(data[:key])
-    @title = data[:title]
-    @author = format_author(data[:author_name])
-  end
-
-  def format_key(key)
-    key.sub('/works/', '')
+    @id = data[:id]
+    @title = data[:volumeInfo][:title]
+    @author = format_author(data[:volumeInfo][:authors])
+    @description = data[:volumeInfo][:description]
   end
 
   def format_author(author)
