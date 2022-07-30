@@ -4,7 +4,7 @@ class BaseService
   end
 
   def self.conn_book
-    Faraday.new(url: "http://openlibrary.org/")
+    Faraday.new(url: "https://www.googleapis.com/books/v1/")
   end
 
   def self.conn_tmdb
