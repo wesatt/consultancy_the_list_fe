@@ -1,5 +1,5 @@
 <h1>Books Matching Your Search</h1>
 
 <% @books.each do |book| %>
-<p class="bookResults"><%= book.title %> by <%= book.author %></p>
+<p class="bookResults"><%= link_to "#{book.title}", "/books/#{book.key}" %> by <%= book.author.join(', ') %></p>
 <% end %>
