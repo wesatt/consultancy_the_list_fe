@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Movies Index (search results) Page', type: :feature do
+RSpec.describe 'Movies Index (search results) Page', :vcr, type: :feature do
   context 'not logged in' do
-    xit 'trying to visit it directly returns you to the homepage if you are not logged in' do
+    it 'trying to visit it directly returns you to the homepage if you are not logged in' do
       visit '/'
       expect(page).to_not have_content('Please login before trying to navigate')
 
@@ -14,11 +16,11 @@ RSpec.describe 'Movies Index (search results) Page', type: :feature do
   end
 
   context 'logged in' do
-    #before(:each) do
-      #allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-    #end
+    before(:each) do
+      allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+    end
 
-    xit 'returns search results from the search/movies page' do
+    it 'returns search results from the search/movies page' do
       visit '/search/movies'
 
       fill_in(:search, with: 'dracula')
@@ -28,7 +30,7 @@ RSpec.describe 'Movies Index (search results) Page', type: :feature do
       expect(page).to have_content('Dracula')
     end
 
-    xit "has links to each result's show page" do
+    it "has links to each result's show page" do
       visit '/search/movies'
 
       fill_in(:search, with: 'dracula')
@@ -38,7 +40,7 @@ RSpec.describe 'Movies Index (search results) Page', type: :feature do
       expect(page).to have_link('Dracula')
       expect(page).to have_content('Release Date:', count: 20)
 
-      within '#movie-result-0' do
+      within '#movie-result-11868' do
         click_link('Dracula')
       end
 

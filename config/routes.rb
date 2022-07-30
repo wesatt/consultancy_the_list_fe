@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'auth/google_oauth2/callback', to: 'users#index'
 
-  resources :movies, only: %i[index]
+  resources :movies, only: %i[index show]
 
   namespace :search do
     get '/books', to: 'books#index'

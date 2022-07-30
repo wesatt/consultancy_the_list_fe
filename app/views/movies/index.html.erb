@@ -1,0 +1,10 @@
+<h1>Showing All Results For "<%= params[:search] %>":</h1>
+<% @movies.each do |movie| %>
+  <div id="movie-result-<%= movie.id %>">
+    <p>
+      <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
+      Release Date: <%= movie.release_date %> &nbsp
+      Vote Average: <%= movie.vote_average %> out of 10
+    </p>
+  </div>
+<% end %>
