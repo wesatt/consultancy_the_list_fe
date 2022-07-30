@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     get '/books', to: 'books#index'
   end
 
+  get '/books', to: 'books#index'
+
   get '/dashboard', to: 'users#show'
 end
