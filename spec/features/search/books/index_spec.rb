@@ -3,6 +3,7 @@ require 'rails_helper'
 
 RSpec.describe "Book Search Page", type: :feature do
   it 'has a search box' do
+    allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
     visit '/search/books'
 
     expect(page).to have_field('Title')
