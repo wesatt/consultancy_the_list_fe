@@ -27,4 +27,18 @@ RSpec.describe "Books search results page", type: :feature do
       expect(page).to have_current_path('/books/OL5819456W') #identifier from api as id
     end
   end
+
+  describe 'Edge Cases and Sad paths' do
+    it 'will show N/A for an author if one is not listed', :vcr do
+      books = BookFacade.create_book_results("Dracula")
+      allow(BookFacade).to receive(:create_book_results).and_return(books)
+      visit '/books'
+
+      expect(page).to have_content("N/A")
+
+      within page.all('.bookResults')[90] do
+        expect(page).to have_content("N/A")
+      end
+    end
+  end
 end
