@@ -18,6 +18,7 @@ RSpec.describe 'Movies Index (search results) Page', :vcr, type: :feature do
   context 'logged in' do
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '13', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
     end
 
     it 'returns search results from the search/movies page' do
@@ -44,7 +45,6 @@ RSpec.describe 'Movies Index (search results) Page', :vcr, type: :feature do
         click_link('Dracula')
       end
 
-      # expecting the test below to fail...need to retrieve media ID during test run
       expect(page).to have_current_path('/movies/11868')
     end
   end

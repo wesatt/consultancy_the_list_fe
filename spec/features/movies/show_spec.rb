@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Movies Show Page', type: :feature do
+RSpec.describe 'Movies Show Page', :vcr, type: :feature do
   context 'not logged in' do
-    xit 'trying to visit it directly returns you to the homepage if you are not logged in' do
+    it 'trying to visit it directly returns you to the homepage if you are not logged in' do
       visit '/'
       expect(page).to_not have_content('Please login before trying to navigate')
 
@@ -14,30 +16,47 @@ RSpec.describe 'Movies Show Page', type: :feature do
   end
 
   context 'logged in' do
-    #before(:each) do
-      #allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-    #end
+    before(:each) do
+      allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '13', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+    end
 
-    xit 'has all the movie data for a specific movie' do
+    it 'has all the movie data for a specific movie' do
       visit "/movies/#{dracula[:id]}"
 
-      expect(page).to have_current_path('/')
       expect(page).to have_content(dracula[:title])
       expect(page).to have_content(dracula[:overview])
       expect(page).to have_content(dracula[:release_date])
       expect(page).to have_content(dracula[:vote_average])
     end
 
-    xit 'has a list of friends that you can make recommendations to' do
-      friend1 = User.new(id: 1, name: 'Christopher Lee', email: 'dracula@hammer.com')
-      friend2 = User.new(id: 2, name: 'Peter Cushing', email: 'helsing@hammer.com')
+    it 'has a list of friends that you can make recommendations to' do
+      friend1_data = {
+        "id": 1,
+        "type": 'user',
+        "attributes": {
+          "email": 'dracula@hammer.com',
+          "name": 'Christopher Lee'
+        }
+      }
+      friend2_data = {
+        "id": 2,
+        "type": 'user',
+        "attributes": {
+          "email": 'helsing@hammer.com',
+          "name": 'Peter Cushing'
+        }
+      }
+      friend1 = User.new(friend1_data)
+      friend2 = User.new(friend2_data)
+      allow(UserFacade).to receive(:list_all_users).and_return([friend1, friend2])
       visit "/movies/#{dracula[:id]}"
 
       expect(page).to have_content(friend1.name)
       expect(page).to have_content(friend2.name)
     end
 
-    xit 'has a checkbox and button that you cannuse to make recommendations' do
+    xit 'has a checkbox and button that you can use to make recommendations' do
       friend1 = User.new(id: 1, name: 'Christopher Lee', email: 'dracula@hammer.com')
       friend2 = User.new(id: 2, name: 'Peter Cushing', email: 'helsing@hammer.com')
       visit "/movies/#{dracula[:id]}"

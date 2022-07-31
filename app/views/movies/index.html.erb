@@ -3,8 +3,8 @@
   <div id="movie-result-<%= movie.id %>">
     <p>
       <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
-      Release Date: <%= movie.release_date %> &nbsp
-      Vote Average: <%= movie.vote_average %> out of 10
+      <strong>Release Date:</strong> <%= movie.release_date %> &nbsp
+      <strong>Vote Average:</strong> <%= movie.vote_average %> out of 10
     </p>
   </div>
 <% end %>

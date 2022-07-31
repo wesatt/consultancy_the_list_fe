@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Movies Search Index Page', type: :feature do
+RSpec.describe 'Movies Search Index Page', :vcr, type: :feature do
   context 'not logged in' do
     it 'trying to visit it directly returns you to the homepage if you are not logged in' do
       visit '/'
