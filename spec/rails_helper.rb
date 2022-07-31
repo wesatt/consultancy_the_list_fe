@@ -30,6 +30,7 @@ RSpec.configure do |config|
   config.use_active_record = false
 
   config.include OmniAuthHash, type: :feature
+  config.include MovieData, type: :feature
 
   # If you enable ActiveRecord support you should unncomment these lines,
   # note if you'd prefer not to run each example within a transaction, you
