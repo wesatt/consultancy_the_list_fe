@@ -12,5 +12,8 @@ Rails.application.routes.draw do
     resources :movies, only: %i[index]
   end
 
+  get '/books', to: 'books#index'
+  get '/books/:id', to: 'books#show'
+
   get '/dashboard', to: 'users#show'
 end

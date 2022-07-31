@@ -5,4 +5,9 @@ class BookFacade
     json.map { |data| Book.new(data)}
   end
 
+  def self.create_book_details(id)
+    json = BookService.get_book_details(id)
+    Book.new(json)
+  end
+
 end
