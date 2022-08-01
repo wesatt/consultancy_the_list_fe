@@ -18,6 +18,7 @@ class UserService < BaseService
     data = get_json(response)[:data]
   end
 
+  # put this into a RecommendationService
   def self.post_recommendation(media_data, rec_to_id)
     response = conn_list.post("users/#{rec_to_id}/recommendations") do |req|
       # req.params['recommendation'] = media_data

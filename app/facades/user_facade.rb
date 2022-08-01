@@ -14,6 +14,7 @@ class UserFacade
     json.map { |data| User.new(data)}
   end
 
+  # put this into a RecommendationFacade
   def self.create_recommendations(params, current_user)
     data = {
       media_id: params[:movie_id].to_i,
