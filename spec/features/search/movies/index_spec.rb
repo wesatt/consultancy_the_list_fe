@@ -37,4 +37,28 @@ RSpec.describe 'Movies Search Index Page', :vcr, type: :feature do
       expect(current_path).to eq('/movies')
     end
   end
+
+  context 'Sad path - logged in, but no search is entered' do
+    before(:each) do
+      allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+    end
+
+    it 'displays an error message if search field is blank' do
+      visit '/search/movies'
+
+      expect(page).to_not have_content('Search cannot be blank.')
+
+      click_button('Search Movies')
+
+      expect(current_path).to eq('/search/movies')
+      expect(page).to have_content('Search cannot be blank.')
+
+      visit '/search/movies'
+
+      expect(page).to_not have_content('Search cannot be blank.')
+
+      fill_in(:search, with: 'dracula')
+      click_button('Search Movies')
+    end
+  end
 end
