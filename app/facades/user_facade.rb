@@ -13,4 +13,16 @@ class UserFacade
     json = UserService.get_all_users
     json.map { |data| User.new(data)}
   end
+
+  def self.create_recommendations(params, current_user)
+    data = {
+      media_id: params[:movie_id].to_i,
+      title: params[:movie_title],
+      media_type: params[:media_type],
+      recommended_by_id: current_user['id'].to_i
+    }
+    params[:recommended].map do |rec_id|
+      UserService.post_recommendation(data, rec_id)
+    end
+  end
 end
