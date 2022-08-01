@@ -16,15 +16,12 @@
 
 <%= form_with url: "/recommendations", method: :post, local: true do |f| %>
   <% @users.each do |user| %>
-    <div id="user-<%= user.id %>">
-      <p>
-      <%#binding.pry %>
-        <% if user.id != current_user['id']%>
-          <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
-          <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
-        <% end %>
+    <% if user.id != current_user['id']%>
+      <p id="friend-id-<%= user.id %>">
+        <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
+        <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
       </p>
-    </div>
+    <% end %>
   <% end %>
   <%= f.hidden_field :movie_id, value: @movie.id %>
   <%= f.hidden_field :movie_title, value: @movie.title %>

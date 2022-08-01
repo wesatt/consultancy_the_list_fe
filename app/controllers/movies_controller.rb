@@ -2,10 +2,10 @@ class MoviesController < ApplicationController
   before_action :session_auth, :current_user
 
   def index
-    if params[:search]
+    if !params[:search].blank?
       @movies = MovieFacade.movie_search(params[:search])
     else
-      redirect_to "/search/movies", notice: 'Please enter a valid search query.'
+      redirect_to "/search/movies", notice: 'Search cannot be blank.'
     end
   end
 

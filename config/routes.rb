@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :movies, only: %i[index show]
 
+  resources :recommendations, only: %i[create]
+
   namespace :search do
     get '/books', to: 'books#index'
     resources :movies, only: %i[index]

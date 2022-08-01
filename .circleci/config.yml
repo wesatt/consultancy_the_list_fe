@@ -25,34 +25,20 @@
 #     jobs:
 #       - say-hello
 
+
 version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
 jobs:
   build:
-    working_directory: ~/the-list
     docker:
-      - image: circleci/ruby:2.7.4
-        environment:
-          PGHOST: localhost
-          PGUSER: the-list
-          RAILS_ENV: test
-      - image: postgres:13.2
-        environment:
-          POSTGRES_USER: the-list
-          POSTGRES_DB: the-list_test
-          POSTGRES_PASSWORD:
+      - image: circleci/ruby:2.5.8-stretch-node
+    executor: ruby/default
     steps:
       - checkout
-      - run: gem install bundler:2.2.19
+      - run: gem install bundler:2.1.4
       - run:
-          name: the-list
+          name: Which bundler?
           command: bundle -v
       - ruby/bundle-install
-
-      - checkout
-      - run: bundle config set --local path 'vendor/bundle'
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-      # - run: bundle exec rake db:setup
-      - run: bundle exec rspec
