@@ -1,9 +1,12 @@
-  <h1>Welcome to The List!</h1>
-  <%= image_tag "https://user-images.githubusercontent.com/98491210/181646573-c49f9559-b3e3-426e-b924-65c7ff6783cf.jpeg" %>
-  <h3>About Us</h3>
+<br>
+<br>
+<center>
+  <h1 class="blue">Welcome to The List!</h1>
   <div id="about-us">
-    <p>An app to recommend and share your favorite books and movies with friends! Register or log in with Google.</p>
+    <h6 class="blue">An app to recommend and share your favorite books and movies with friends!</h6>
   </div>
-  <%= image_tag 'https://www.indiewire.com/wp-content/uploads/2020/11/MSDROCK_EC013.jpg' %>
-
-  <%= button_to 'Login with Google', '/auth/google_oauth2/', method: :get %>
+  <div class="tenor-gif-embed" data-postid="16038292" data-share-method="host" data-aspect-ratio="1" data-width="30%"><a href="https://tenor.com/view/to-do-list-checklist-check-it-all-list-gif-16038292" auto-play="true">To Do List Checklist Sticker</a>from <a href="https://tenor.com/search/to+do+list-stickers">To Do List Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+  <% if !current_user %>
+    <%= button_to 'Login with Google', '/auth/google_oauth2/', method: :get %>
+  <% end %>
+</center>
