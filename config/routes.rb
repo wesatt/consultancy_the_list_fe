@@ -5,9 +5,15 @@ Rails.application.routes.draw do
 
   get 'auth/google_oauth2/callback', to: 'users#index'
 
+  resources :movies, only: %i[index show]
+
   namespace :search do
     get '/books', to: 'books#index'
+    resources :movies, only: %i[index]
   end
+
+  get '/books', to: 'books#index'
+  get '/books/:id', to: 'books#show'
 
   get '/dashboard', to: 'users#show'
 end

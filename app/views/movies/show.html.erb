@@ -1,0 +1,33 @@
+<h1><%= @movie.title %></h1>
+<%= image_tag "https://image.tmdb.org/t/p/w500/#{@movie.poster_path}" %>
+<p><strong>Overview:</strong> <%= @movie.overview %></p>
+<p><strong>Release Date:</strong> <%= @movie.release_date %></p>
+<p><strong>Rating:</strong> <%= @movie.vote_average %> out of 10</p>
+<p><strong></strong><%=  %></p>
+
+<br>
+
+<h1>Recommend this movie to your friends:</h1>
+
+<%# Or should we have a link here instead? %>
+<%# Benefits of link: only pass in one object from controller and keep things more RESTful %>
+<%# Benefits of keeping it here: Smoother user experience, less views to manage %>
+<%# Add friends search %>
+
+<%= form_with url: "/recommendations", method: :post, local: true do |f| %>
+  <% @users.each do |user| %>
+    <div id="user-<%= user.id %>">
+      <p>
+      <%#binding.pry %>
+        <% if user.id != current_user['id']%>
+          <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
+          <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+  <%= f.hidden_field :movie_title, value: @movie.title %>
+  <%= f.hidden_field :media_type, value: "movie" %>
+  <%= f.submit "Recommend" %>
+<% end %>

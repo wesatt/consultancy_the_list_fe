@@ -7,4 +7,10 @@ RSpec.describe UserFacade, :vcr do
     expect(books).to be_an(Array)
     expect(books).to be_all(Book)
   end
+
+  it 'creates a poro from an id call' do
+    book = BookFacade.create_book_details("rk2MDQAAQBAJ")
+
+    expect(book).to be_a(Book)
+  end
 end
