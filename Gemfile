@@ -7,7 +7,8 @@ gem 'faraday'
 gem 'figaro'
 gem 'json'
 gem 'omniauth-google-oauth2'
-
+gem 'bootstrap', '~> 5.1.3'
+gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
 # Use Puma as the app server

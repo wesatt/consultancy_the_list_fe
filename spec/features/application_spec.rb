@@ -10,7 +10,7 @@ RSpec.describe 'the application layout page', type: :feature do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(nil)#simulating destroy action, tested in browser, functioning as expected
 
-    click_button("Log Out")
+    click_link("Log Out")
 
     expect(current_path).to eq('/')
     expect(page).to_not have_button("Log Out")
