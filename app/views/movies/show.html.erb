@@ -15,12 +15,17 @@
 <%# Add friends search %>
 
 <%= form_with url: "/recommendations", method: :post, local: true do |f| %>
+
+    <p id="friend-id-<%= current_user['id'] %>">
+      <%= f.check_box :recommended, {multiple: true }, current_user['id'], nil %>
+      <%= label_tag("#{current_user['id']}", "#{current_user['name']} (#{current_user['email']})") %>
+    </p>
   <% @users.each do |user| %>
     <% if user.id != current_user['id']%>
-      <p id="friend-id-<%= user.id %>">
-        <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
-        <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
-      </p>
+    <p id="friend-id-<%= user.id %>">
+      <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
+      <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
+    </p>
     <% end %>
   <% end %>
   <%= f.hidden_field :movie_id, value: @movie.id %>
