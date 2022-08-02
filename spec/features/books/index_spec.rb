@@ -30,16 +30,25 @@ RSpec.describe "Books search results page", type: :feature do
   end
 
   describe 'Edge Cases and Sad paths' do
-    # it 'will show N/A for an author if one is not listed', :vcr do
-    #   books = BookFacade.create_book_results("Dracula")
-    #   allow(BookFacade).to receive(:create_book_results).and_return(books)
-    #   visit '/books'
-    #
-    #   expect(page).to have_content("N/A")
-    #
-    #   within page.all('.bookResults')[90] do
-    #     expect(page).to have_content("N/A")
-    #   end
-    # end
+    before(:each) do
+      @books = [Book.new({id: "Sumthin'",
+                            volumeInfo: {
+                              title: "Frogs, meet Clogs",
+                              authors: []}})]
+    end
+
+    it 'will show N/A for an author if one is not listed', :vcr do
+      allow(BookFacade).to receive(:create_book_results).and_return(@books)
+      visit '/books'
+
+      expect(page).to have_content("Author(s): N/A")
+    end
+
+    it 'will show N/A for a date if one is not listed', :vcr do
+      allow(BookFacade).to receive(:create_book_results).and_return(@books)
+      visit '/books'
+
+      expect(page).to have_content("Date Published: N/A")
+    end
   end
 end
