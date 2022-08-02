@@ -2,24 +2,42 @@ require 'rails_helper'
 # save_and_open_page
 
 RSpec.describe "Book Search Page", type: :feature do
-  before(:each) do
-    allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-  end
 
-  it 'has a search box' do
+  describe 'logged in tests' do
+    before(:each) do
+      allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+    end
+    it 'has a search box' do
+
+        visit '/search/books'
+
+        expect(page).to have_field(:search)
+        expect(page).to have_button('Search Books by Title')
+    end
+
+    it 'will lead to a results page', :vcr do
+        visit '/search/books'
+
+        fill_in(:search, with: "Krampus")
+        click_button('Search Books by Title')
+
+        expect(current_path).to eq('/books')
+    end
+
+    it 'will not perform an empty search' do
+        visit '/search/books'
+
+        click_button('Search Books by Title')
+
+        expect(current_path).to eq('/search/books')
+        expect(page).to have_content("Search cannot be blank.")
+    end
+  end
+  it 'will redirect a user who is not logged in' do
 
     visit '/search/books'
 
-    expect(page).to have_field('Title')
-    expect(page).to have_button('Search Titles')
-  end
-
-  it 'will lead to a results page', :vcr do
-    visit '/search/books'
-
-    fill_in('Title', with: "Krampus")
-    click_button('Search Titles')
-
-    expect(current_path).to eq('/books')
+    expect(current_path).to eq('/')
+    expect(page).to have_content("Please login before trying to navigate")
   end
 end
