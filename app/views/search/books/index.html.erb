@@ -9,8 +9,8 @@
 <br>
 <%= form_with url: "/books", method: :get, local: true do |f| %>
 <%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.submit "Search Titles" %>
+<%= f.text_field :search %>
+<%= f.submit "Search Books by Title" %>
 <% end %>
 <br>
 <br>
