@@ -30,7 +30,7 @@ class Book
   end
 
   def format_entry(entry)
-    if entry.nil? || entry.empty?
+    if entry.nil? || entry.blank?
       "N/A"
     else
       entry

@@ -11,9 +11,9 @@ RSpec.describe "Books search results page", type: :feature do
     allow(BookFacade).to receive(:create_book_results).and_return(books)
     visit '/books'
 
-
     expect(page).to have_content("The Book Thief")
     expect(page).to have_content("Markus Zusak")
+    expect(page).to have_content("2014-05-27")
   end
 
   it 'Has the books title as a link to its show page', :vcr do
