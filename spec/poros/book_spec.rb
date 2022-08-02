@@ -56,10 +56,7 @@ RSpec.describe Book do
                   description: "",
                   publishedDate: "",
                   pageCount: "",
-                  averageRating: "",
-                  imageLinks: {
-                  }
-              }
+                  averageRating: ""}
           }
 
           @book1 = Book.new(data1)
@@ -83,6 +80,7 @@ RSpec.describe Book do
       expect(@book2.published_date).to eq("N/A")
       expect(@book2.page_count).to eq("N/A")
       expect(@book2.average_rating).to eq("N/A")
+      expect(@book2.photo).to eq(nil)
     end
   end
 end

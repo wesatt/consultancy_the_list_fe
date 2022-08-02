@@ -18,7 +18,7 @@ class Book
     @published_date = format_entry(data[:volumeInfo][:publishedDate])
     @page_count = format_entry(data[:volumeInfo][:pageCount])
     @average_rating = format_entry(data[:volumeInfo][:averageRating])
-    @photo = data[:volumeInfo][:imageLinks][:medium] || nil
+    @photo = format_photo(data[:volumeInfo][:imageLinks])
   end
 
   def format_author(author)
@@ -34,6 +34,14 @@ class Book
       "N/A"
     else
       entry
+    end
+  end
+
+  def format_photo(data)
+    if data.nil? || data[:medium].nil?
+      nil
+    else
+      data[:medium]
     end
   end
 end
