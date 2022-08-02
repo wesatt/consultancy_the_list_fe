@@ -1,10 +1,57 @@
-<h1>Showing All Results For "<%= params[:search] %>":</h1>
-<% @movies.each do |movie| %>
-  <div id="movie-result-<%= movie.id %>">
-    <p>
-      <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
-      <strong>Release Date:</strong> <%= movie.release_date %> &nbsp
-      <strong>Vote Average:</strong> <%= movie.vote_average %> out of 10
-    </p>
+
+<br>
+<br>
+
+<center>
+<h1 class="blue">Showing All Results For "<%= params[:search] %>"</h1>
+</center>
+    <% movie_count = (@movies.length) /2 %>
+<br>
+<br>
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col align-self-start">
+      <% if @movies.length.even? %>
+      <% @movies.first(movie_count).each do |movie| %>
+
+        <div id="movie-result-<%= movie.id %>">
+          <ul>
+            <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
+            <br>
+            <strong>Release Date:</strong> <%= movie.release_date %> &nbsp
+            <br>
+            <strong>Vote Average:</strong> <%= movie.vote_average %> out of 10
+          </ul>
+          </div>
+            <% end %>
+          <% else %>
+          <% @movies.first(movie_count + 1).each do |movie| %>
+
+            <div id="movie-result-<%= movie.id %>">
+              <ul>
+                <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
+                <br>
+                <strong>Release Date:</strong> <%= movie.release_date %> &nbsp
+                <br>
+                <strong>Vote Average:</strong> <%= movie.vote_average %> out of 10
+              </ul>
+          </div>
+            <% end %>
+          <% end %>
+      </div>
+
+    <div class="col align-self-end">
+      <% @movies.last(movie_count).each do |movie| %>
+        <div id="movie-result-<%= movie.id %>">
+          <ul>
+            <%= link_to movie.title, "/movies/#{movie.id}" %> &nbsp
+            <br>
+            <strong>Release Date:</strong> <%= movie.release_date %> &nbsp
+            <br>
+            <strong>Vote Average:</strong> <%= movie.vote_average %> out of 10
+          </ul>
+          </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
