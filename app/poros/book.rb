@@ -6,7 +6,8 @@ class Book
               :subtitle,
               :published_date,
               :page_count,
-              :average_rating
+              :average_rating,
+              :photo
 
   def initialize(data)
     @id = data[:id]
@@ -17,6 +18,7 @@ class Book
     @published_date = format_entry(data[:volumeInfo][:publishedDate])
     @page_count = format_entry(data[:volumeInfo][:pageCount])
     @average_rating = format_entry(data[:volumeInfo][:averageRating])
+    @photo = data[:volumeInfo][:imageLinks][:medium] || nil
   end
 
   def format_author(author)
