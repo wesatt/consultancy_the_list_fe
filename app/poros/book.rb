@@ -39,7 +39,7 @@ class Book
 
   def format_photo(data)
     if data.nil? || data[:medium].nil?
-      nil
+      "No-Image-List.png"
     else
       data[:medium]
     end
