@@ -10,16 +10,25 @@ RSpec.describe "Book Search Page", type: :feature do
 
     visit '/search/books'
 
-    expect(page).to have_field('Title')
-    expect(page).to have_button('Search Titles')
+    expect(page).to have_field(:search)
+    expect(page).to have_button('Search Books by Title')
   end
 
   it 'will lead to a results page', :vcr do
     visit '/search/books'
 
-    fill_in('Title', with: "Krampus")
-    click_button('Search Titles')
+    fill_in(:search, with: "Krampus")
+    click_button('Search Books by Title')
 
     expect(current_path).to eq('/books')
+  end
+
+  it 'will not perform an empty search' do
+    visit '/search/books'
+
+    click_button('Search Books by Title')
+
+    expect(current_path).to eq('/search/books')
+    expect(page).to have_content("Search cannot be blank.")
   end
 end
