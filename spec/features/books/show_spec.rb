@@ -31,7 +31,9 @@ RSpec.describe "Books show page", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
       visit 'books/mEQ8DQYchtcC'
 
-      expect(page).to have_content("No-Image-List.png")
+      within '.bookDetails' do
+        expect(page.find('img')['src']).to match("/assets/No-Image-List*")
+      end
     end
   end
 end

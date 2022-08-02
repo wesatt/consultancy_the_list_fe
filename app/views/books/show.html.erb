@@ -2,8 +2,8 @@
 <% if @book.subtitle %>
   <h2><%= @book.subtitle %></h2>
 <% end %>
-<%= image_tag "#{@book.photo}"%>
 <div class="bookDetails">
+  <%= image_tag "#{@book.photo}"%>
   <p><strong>Author(s):</strong> <%= @book.author.join(', ') %></p>
   <p><strong>Published On:</strong> <%= @book.published_date %></p>
   <p><strong>Description:</strong> <%= sanitize @book.description %></p>
