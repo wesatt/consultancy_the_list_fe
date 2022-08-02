@@ -22,6 +22,10 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  # adding for heroku test purposes
+  # https://github.com/AlexanderPavlenko/sprockets_uglifier_with_source_maps/issues/9
+  config.assets.uglifier = { harmony: true }
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
