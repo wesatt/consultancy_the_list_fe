@@ -9,7 +9,7 @@ RSpec.describe "Books search results page", type: :feature do
   it 'will display a list of books, and authors', :vcr do
     books = BookFacade.create_book_results("The Book Thief")
     allow(BookFacade).to receive(:create_book_results).and_return(books)
-    visit '/books'
+    visit '/books?search=the+book+thief'
 
     expect(page).to have_content("The Book Thief")
     expect(page).to have_content("Markus Zusak")
@@ -19,7 +19,7 @@ RSpec.describe "Books search results page", type: :feature do
   it 'Has the books title as a link to its show page', :vcr do
     books = BookFacade.create_book_results("The Book Thief")
     allow(BookFacade).to receive(:create_book_results).and_return(books)
-    visit '/books'
+    visit '/books?search=the+book+thief'
 
     within page.all('.bookResults')[0] do
       expect(page).to have_link("The Book Thief")
@@ -35,19 +35,16 @@ RSpec.describe "Books search results page", type: :feature do
                             volumeInfo: {
                               title: "Frogs, meet Clogs",
                               authors: []}})]
+
+      allow(BookFacade).to receive(:create_book_results).and_return(@books)
+      visit '/books?search=oranges'
     end
 
     it 'will show N/A for an author if one is not listed', :vcr do
-      allow(BookFacade).to receive(:create_book_results).and_return(@books)
-      visit '/books'
-
       expect(page).to have_content("Author(s): N/A")
     end
 
     it 'will show N/A for a date if one is not listed', :vcr do
-      allow(BookFacade).to receive(:create_book_results).and_return(@books)
-      visit '/books'
-
       expect(page).to have_content("Date Published: N/A")
     end
   end
