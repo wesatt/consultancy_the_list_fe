@@ -56,7 +56,7 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
       expect(page).to have_content(friend2.name)
     end
 
-    xit 'has a checkbox and button that you can use to make recommendations' do
+    it 'has a checkbox and button that you can use to make recommendations' do
       friend1_data = {
         "id": 2,
         "type": 'user',
@@ -93,6 +93,51 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
       # within "#recommendations-#{friend1.id}" do
       #   expect(page).to have_content("You recommended Dracula to #{friend1.name}")
       # end
+    end
+  end
+
+  context 'logged in, no recommendation selections made' do
+    before(:each) do
+      allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '1', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+    end
+
+    it 'returns a sad path error when trying to recommend something without selecting anybody' do
+      friend1_data = {
+        "id": 2,
+        "type": 'user',
+        "attributes": {
+          "email": 'dracula@hammer.com',
+          "name": 'Christopher Lee'
+        }
+      }
+      friend2_data = {
+        "id": 3,
+        "type": 'user',
+        "attributes": {
+          "email": 'helsing@hammer.com',
+          "name": 'Peter Cushing'
+        }
+      }
+      friend1 = User.new(friend1_data)
+      friend2 = User.new(friend2_data)
+      allow(UserFacade).to receive(:list_all_users).and_return([friend1, friend2])
+      visit "/movies/#{dracula[:id]}"
+
+      expect(page).to_not have_content('You must select someone to make a recommendation.')
+
+      within "#friend-id-#{friend1.id}" do
+        expect(page).to have_content(friend1.name)
+      end
+
+      within "#friend-id-#{friend2.id}" do
+        expect(page).to have_content(friend2.name)
+      end
+
+      click_button('Recommend')
+
+      expect(page).to have_current_path("/movies/#{dracula[:id]}")
+      expect(page).to have_content('You must select someone to make a recommendation.')
     end
   end
 end
