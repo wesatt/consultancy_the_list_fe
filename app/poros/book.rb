@@ -12,11 +12,11 @@ class Book
     @id = data[:id]
     @title = data[:volumeInfo][:title]
     @author = format_author(data[:volumeInfo][:authors])
-    @description = data[:volumeInfo][:description]
+    @description = format_entry(data[:volumeInfo][:description])
     @subtitle = data[:volumeInfo][:subtitle]
-    @published_date = data[:volumeInfo][:publishedDate]
-    @page_count = data[:volumeInfo][:pageCount]
-    @average_rating = data[:volumeInfo][:averageRating]
+    @published_date = format_entry(data[:volumeInfo][:publishedDate])
+    @page_count = format_entry(data[:volumeInfo][:pageCount])
+    @average_rating = format_entry(data[:volumeInfo][:averageRating])
   end
 
   def format_author(author)
@@ -24,6 +24,14 @@ class Book
       ["N/A"]
     else
       author
+    end
+  end
+
+  def format_entry(entry)
+    if entry.nil? || entry.empty?
+      "N/A"
+    else
+      entry
     end
   end
 end

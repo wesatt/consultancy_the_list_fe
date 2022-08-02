@@ -56,7 +56,7 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
       expect(page).to have_content(friend2.name)
     end
 
-    it 'has a checkbox and button that you can use to make recommendations' do
+    xit 'has a checkbox and button that you can use to make recommendations' do
       friend1_data = {
         "id": 1,
         "type": 'user',
