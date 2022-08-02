@@ -24,10 +24,13 @@ Rails.application.configure do
 
   # adding for heroku test purposes
   # https://github.com/AlexanderPavlenko/sprockets_uglifier_with_source_maps/issues/9
-  config.assets.uglifier = { harmony: true }
+  # config.assets.uglifier = { harmony: true }
+  # https://stackoverflow.com/questions/56063066/es6-syntax-harmony-mode-must-be-enabled-with-uglifier-newharmony-true
+  config.assets.js_compressor = Uglifier.new(harmony: true)
+
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
