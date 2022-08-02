@@ -1,24 +1,29 @@
-# README
+# The List
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Table of Contents
 
-Things you may want to cover:
+## Project Overview
+### BE Project Repo
+### Built With (Tech)
 
-* Ruby version
+## Setup
 
-* System dependencies
+## User Walkthrough
 
-* Configuration
+## API Endpoints
 
-* Database creation
+## Tech
 
-* Database initialization
+## Contributors
+### Back-end Team
+Eric Espindola Chavez &mdash; [Github](https://github.com/erock02) • [LinkedIn](https://www.linkedin.com/in/eric-espindola-b9620a158/)
+Chris Kjolhede &mdash; [Github](https://github.com/CKjolhede) • [LinkedIn](https://www.linkedin.com/in/chris-kjolhede/)
+Becky Nisttahuz &mdash; [Github](https://github.com/benistta) • [LinkedIn](https://www.linkedin.com/in/becky-nisttahuz/)
 
-* How to run the test suite
+### Front-end Team
+Deannah Burke &mdash; [Github](https://github.com/deannahburke) • [LinkedIn](https://www.linkedin.com/in/deannah-burke/)
+Wesley Garcia &mdash; [Github](https://github.com/wesatt) • [LinkedIn](https://www.linkedin.com/in/wesley-garcia-attech/)
+Sai Hall &mdash; [Github](https://github.com/SaiHall) • [LinkedIn](https://www.linkedin.com/in/sai-hall-503710237/)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Project Manager
+Jamison Ordway
