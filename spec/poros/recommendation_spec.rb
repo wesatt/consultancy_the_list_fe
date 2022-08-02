@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Recommendation do
   it 'exists and has attributes' do
     movie_rec = {
-      :id=>"1",
-      :type=>"recommendation",
-      :attributes=>{
-        :media_id=>"11868",
-        :title=>"Dracula",
-        :media_type=>"movie",
-        :recommended_by_id=>13,
-        :status=>"pending",
-        :user_id=>1
-        }
+      id: '1',
+      type: 'recommendation',
+      attributes: {
+        media_id: '11868',
+        title: 'Dracula',
+        media_type: 'movie',
+        recommended_by_id: 13,
+        status: 'pending',
+        user_id: 1
       }
+    }
     recommendation = Recommendation.new(movie_rec)
 
     expect(recommendation).to be_a(Recommendation)
