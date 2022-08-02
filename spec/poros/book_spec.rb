@@ -70,7 +70,7 @@ RSpec.describe Book do
         expect(@book1.published_date).to eq("N/A")
         expect(@book1.page_count).to eq("N/A")
         expect(@book1.average_rating).to eq("N/A")
-        expect(@book1.photo).to eq(nil)
+        expect(@book1.photo).to eq("No-Image-List.png")
     end
 
     it 'will replace an empty entry with N/A, and empty subtitle/photo with nothing' do
@@ -80,7 +80,7 @@ RSpec.describe Book do
       expect(@book2.published_date).to eq("N/A")
       expect(@book2.page_count).to eq("N/A")
       expect(@book2.average_rating).to eq("N/A")
-      expect(@book2.photo).to eq(nil)
+      expect(@book2.photo).to eq("No-Image-List.png")
     end
   end
 end
