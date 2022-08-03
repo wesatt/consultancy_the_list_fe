@@ -3,15 +3,13 @@
   <img src="https://user-images.githubusercontent.com/98491210/181646573-c49f9559-b3e3-426e-b924-65c7ff6783cf.jpeg" />
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     </li>
     <li><a href="#project-overview">Project Overview</a></li>
-    <li><a href="#tech">Tech</a></li>
+    <li><a href="#built-with">Built With</a></li>
     <li><a href="#setup">Setup</a></li>
     <li><a href="#user-walkthrough">User Walkthrough</a></li>
     <li><a href="#api-endpoints">API Endpoints</a></li>
@@ -22,8 +20,14 @@
 <!-- PROJECT OVERVIEW -->
 ## Project Overview
 
-<!-- Tech -->
-## Tech
+<!-- Built With -->
+## Built With
+[<img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white"/>](https://www.ruby-lang.org/en/)<br>
+[<img src="https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white"/>](https://rubyonrails.org/)<br>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><br>
+[<img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>](https://getbootstrap.com)<br>
+<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/><br>
+[<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"/>](https://www.postman.com/product/what-is-postman/)<br>
 
 <!-- Setup -->
 ## Setup
