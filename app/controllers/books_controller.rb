@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :session_auth
+  before_action :session_auth, :current_user
 
   def index
     if !params[:search].blank?
@@ -11,5 +11,6 @@ class BooksController < ApplicationController
 
   def show
     @book = BookFacade.create_book_details(params[:id])
+    @users = UserFacade.list_all_users
   end
 end
