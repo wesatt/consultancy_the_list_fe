@@ -10,9 +10,8 @@
             <div class="col">
                 <ul><h4><u>Pending Movie Recommendations</u></h4></ul>
                 <% @recommendations[:movie].each do |movie|%>
-                    <% if movie.blank? %>
-                    <p> You currently have no movie recommendations.</p>
-                        <% elsif movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
+            
+                    <% if movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
                         <ul>
                         <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
                         <%= %>
