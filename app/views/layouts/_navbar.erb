@@ -1,14 +1,14 @@
 <ul class="nav justify-content-end">
   <li class="nav-item">
     <% if !current_user %>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/auth/google_oauth2/" style="color: #196F3D">Log In</a>
-      <% end %>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/auth/google_oauth2/" style="color: #196F3D">Log In</a>
+      </li>
+    <% end %>
     <% if current_user %>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/" data-method="delete" style="color: #196F3D">Log Out</a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/" data-method="delete" style="color: #196F3D">Log Out</a>
+      </li>
     <% end %>
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="/search/movies" style="color: #196F3D">Movie Search</a>
@@ -22,4 +22,5 @@
     <li class="nav-item">
       <img src="https://user-images.githubusercontent.com/98491210/181646573-c49f9559-b3e3-426e-b924-65c7ff6783cf.jpeg">
     </li>
+  </li>
 </ul>

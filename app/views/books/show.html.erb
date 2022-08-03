@@ -1,12 +1,20 @@
-<h3><%= "#{@book.title}" %></h3>
-<% if @book.subtitle %>
-<h4><%= @book.subtitle %></h4>
-<% end %>
-
+<br>
+<br>
+<div class="page-padding"
 <div class="bookDetails">
-  <p>Author(s): <%= @book.author.join(', ') %></p>
-  <p>Published On: <%= @book.published_date %></p>
-  <p>Description: <%= @book.description %></p>
-  <p>Number of Pages: <%= @book.page_count %></p>
-  <p>Average Rating: <%= @book.average_rating %>/5</p>
+  <center>
+  <%= image_tag "#{@book.photo}"%>
+  <br>
+  <br>
+  <h3 class="blue"><%= "#{@book.title}" %></h3>
+  <% if @book.subtitle %>
+  <h4 class="blue"><%= @book.subtitle %></h4>
+  <% end %>
+  </center>
+  <br>
+  <p> <strong class="blue">Author(s)</strong><br><%= @book.author.join(', ') %></p>
+  <p> <strong class="blue">Published On</strong><br><%= @book.published_date %></p>
+  <p> <strong class="blue">Description</strong><br><%= sanitize @book.description %></p>
+  <p> <strong class="blue">Number of Pages</strong><br><%= @book.page_count %></p>
+  <p> <strong class="blue">Average Rating</strong><br><%= @book.average_rating %>/5</p>
 </div>
