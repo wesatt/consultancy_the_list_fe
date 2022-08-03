@@ -24,9 +24,9 @@ Has a friend ever recommended an amazing movie to you, only for you to immediate
 ## Built With
 [<img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white"/>](https://www.ruby-lang.org/en/)<br>
 [<img src="https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white"/>](https://rubyonrails.org/)<br>
+<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/><br>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><br>
 [<img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>](https://getbootstrap.com)<br>
-<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/><br>
 [<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"/>](https://www.postman.com/product/what-is-postman/)<br>
 
 <!-- Setup -->
@@ -37,6 +37,12 @@ Has a friend ever recommended an amazing movie to you, only for you to immediate
 
 <!-- API Endpoints -->
 ## API Endpoints
+**The List** consumes several API's, including our own, built from the ground up back-end, [TheListAPI](https://github.com/CKjolhede/Consultancy_The_List_BE). Additionally, The List consumes the following two external API's for media data:<br><br>
+![Screen Shot 2022-08-03 at 10 27 13 AM](https://user-images.githubusercontent.com/98491210/182660517-d3274016-d90f-4161-9d7c-846b19827335.png)<br>
+Documentation [here](https://developers.themoviedb.org/3/getting-started/introduction).<br>
+<br>
+![Screen Shot 2022-08-03 at 10 52 11 AM](https://user-images.githubusercontent.com/98491210/182665170-c912ce12-d1d4-4c27-a64f-ebaa30bea1a9.png)<br>
+Documentation [here](https://developers.google.com/books/docs/viewer/developers_guide).<br>
 
 <!-- CONTRIBUTORS -->
 ## Contributors
