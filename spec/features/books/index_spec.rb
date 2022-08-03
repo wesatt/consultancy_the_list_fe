@@ -4,6 +4,8 @@ require 'rails_helper'
 RSpec.describe "Books search results page", type: :feature do
   before(:each) do
     allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '13', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+
   end
 
   it 'will display a list of books, and authors', :vcr do

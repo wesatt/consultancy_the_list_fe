@@ -17,3 +17,24 @@
   <p> <strong class="blue">Number of Pages</strong><br><%= @book.page_count %></p>
   <p> <strong class="blue">Average Rating</strong><br><%= @book.average_rating %>/5</p>
 </div>
+
+<h1 class="blue">Recommend this book to your friends</h1>
+
+<%= form_with url: "/recommendations", method: :post, local: true do |f| %>
+    <p id="friend-id-<%= current_user['id'] %>">
+      <%= f.check_box :recommended, {multiple: true }, current_user['id'], nil %>
+      <%= label_tag("#{current_user['id']}", "#{current_user['name']} (#{current_user['email']})") %>
+    </p>
+  <% @users.each do |user| %>
+    <% if user.id != current_user['id']%>
+    <p id="friend-id-<%= user.id %>">
+      <%= f.check_box :recommended, {multiple: true }, user.id, nil %>
+      <%= label_tag("#{user.id}", "#{user.name} (#{user.email})") %>
+    </p>
+    <% end %>
+  <% end %>
+  <%= f.hidden_field :media_id, value: @book.id %>
+  <%= f.hidden_field :title, value: @book.title %>
+  <%= f.hidden_field :media_type, value: "book" %>
+  <%= f.submit "Recommend" %>
+<% end %>
