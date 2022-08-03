@@ -19,7 +19,7 @@
 
 <!-- PROJECT OVERVIEW -->
 ## Project Overview
-Has a friend ever recommended an amazing movie to you, only for you to immediately forget about it?  Have you ever read an incredible book you swear someone suggested, but you can't remember who to thank? **The List** is here to help.    
+Has a friend ever recommended an amazing movie to you, only for you to immediately forget about it?  Have you ever read an incredible book you swear someone suggested, but you can't remember who to thank? **The List** is here to help.  Browse thousands of movies and books, personally recommend them to your friends, and store media recommendations made to you all within one convenient user interface!    
 <!-- Built With -->
 ## Built With
 [<img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white"/>](https://www.ruby-lang.org/en/)<br>
@@ -56,5 +56,5 @@ Deannah Burke &mdash; [Github](https://github.com/deannahburke) • [LinkedIn](h
 Wesley Garcia &mdash; [Github](https://github.com/wesatt) • [LinkedIn](https://www.linkedin.com/in/wesley-garcia-attech/)<br>
 Sai Hall &mdash; [Github](https://github.com/SaiHall) • [LinkedIn](https://www.linkedin.com/in/sai-hall-503710237/)<br>
 
-### Project Manager
+### Instructor/Project Manager
 Jamison Ordway
