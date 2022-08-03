@@ -1,2 +1,64 @@
-<h1>Hi, <%= @user['name'] %>!</h1>
-<h2>You succesfully logged in!</h2>
+    <h1><div class="container pt-5">
+    <%= @user['name'] %>'s Dashboard</h1>
+    </div>
+    <div class="container pt-2">
+        <ul><h2>Here are your lists</h2></ul>
+        </div>
+<br>
+    <div class="container pt-2">
+        <div class="row align-items-start">
+            <div class="col">
+                <ul><h4><u>Pending Movie Recommendations</u></h4></ul>
+                <% @recommendations[:movie].each do |movie|%>
+                    <% if movie.blank? %>
+                    <p> You currently have no movie recommendations.</p>
+                        <% elsif movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
+                        <ul>
+                        <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
+                        <%= %>
+                        <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
+                        <p>Recommended by: <%= recommended_by.name %>
+                        </ul>
+                    <% end %>
+                <% end %>
+            </div>
+            <div class="col">
+                <ul><h4><u>Your Watch List</u></h4></ul>
+                    <% @recommendations[:movie].each do |movie|%>
+                        <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i%>
+                            <ul>
+                            <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
+                            </ul>
+                        <% end %>
+                    <% end %><br>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <ul><h4><u>Pending Book Recommendations</u></h4></ul>
+                <% @recommendations[:book].each do |book|%>
+                    <% if book.blank? %>
+                    <p> You currently have no book recommendations.</p>
+                        <% elsif book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
+                        <ul>
+                            <%= link_to book.title, "/book/#{book.media_id}" %> &nbsp<br>
+                            <% recommended_by = UserFacade.find_user(book.recommended_by_id) %>
+                            <p>Recommended by: <%= recommended_by.name %>
+                        </ul>
+                    <% end %>
+                <% end %>
+            </div>
+            <div class="col">
+                <ul><h4><u>Recommended Watchlist</u></h4></ul>
+                    <% @recommendations[:movie].each do |movie|%>
+                        <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>  
+                            <ul>
+                            <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
+                                <% recommended_to = UserFacade.find_user(movie.recommended_to_id) %>
+                                <p>Recommended to: <%= recommended_to.name %></p>
+                            </ul>
+                        <% end %>
+                    <% end %>
+            </div>
+        </div>
+    </div>
