@@ -36,8 +36,8 @@
     </p>
     <% end %>
   <% end %>
-  <%= f.hidden_field :movie_id, value: @movie.id %>
-  <%= f.hidden_field :movie_title, value: @movie.title %>
+  <%= f.hidden_field :media_id, value: @movie.id %>
+  <%= f.hidden_field :title, value: @movie.title %>
   <%= f.hidden_field :media_type, value: "movie" %>
   <%= f.submit "Recommend" %>
 <% end %>
