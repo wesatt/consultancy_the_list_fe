@@ -6,6 +6,6 @@
 <br>
 <br>
 <% @books.each do |book| %>
-<p class="bookResults"><%= link_to "#{book.title}", "/books/#{book.id}" %>, <br><strong>Date Published:</strong> <%= book.published_date %> <br><strong>Author(s):</strong> <%= book.author.join(', ') %></p>
+<p class="bookResults-<%= book.id %>"><%= link_to "#{book.title}", "/books/#{book.id}" %>, <br><strong>Date Published:</strong> <%= book.published_date %> <br><strong>Author(s):</strong> <%= book.author.join(', ') %></p>
 <% end %>
 </center>
