@@ -1,5 +1,11 @@
-<h1>Books Matching Your Search</h1>
+<br>
+<br>
 
+<center>
+<h1 class="blue">Books Matching Your Search</h1>
+<br>
+<br>
 <% @books.each do |book| %>
-<p class="bookResults"><%= link_to "#{book.title}", "/books/#{book.id}" %>, <strong>Date Published:</strong> <%= book.published_date %> <strong>Author(s):</strong> <%= book.author.join(', ') %></p>
+<p class="bookResults"><%= link_to "#{book.title}", "/books/#{book.id}" %>, <br><strong>Date Published:</strong> <%= book.published_date %> <br><strong>Author(s):</strong> <%= book.author.join(', ') %></p>
 <% end %>
+</center>
