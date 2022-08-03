@@ -16,8 +16,8 @@ RSpec.describe RecommendationFacade, :vcr do
   it '.create_recommendations(params, current_user) returns an array of created recommendation hashes' do
     params = {
       recommended: ['2'],
-      movie_id: '11868',
-      movie_title: 'Dracula',
+      media_id: '11868',
+      title: 'Dracula',
       media_type: 'movie'
     }
     current_user = {

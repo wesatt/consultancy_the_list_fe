@@ -18,7 +18,12 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
   context 'logged in' do
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '1', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+      users = UserFacade.list_all_users
+      @friend1 = users.first
+      @friend2 = users.second
+      test_user = users.third
+      hash = {'email' => test_user.email, 'name' => test_user.name, 'id' => test_user.id}
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(hash)
     end
 
     it 'has all the movie data for a specific movie' do
@@ -31,60 +36,24 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
     end
 
     it 'has a list of friends that you can make recommendations to' do
-      friend1_data = {
-        "id": 2,
-        "type": 'user',
-        "attributes": {
-          "email": 'dracula@hammer.com',
-          "name": 'Christopher Lee'
-        }
-      }
-      friend2_data = {
-        "id": 3,
-        "type": 'user',
-        "attributes": {
-          "email": 'helsing@hammer.com',
-          "name": 'Peter Cushing'
-        }
-      }
-      friend1 = User.new(friend1_data)
-      friend2 = User.new(friend2_data)
-      allow(UserFacade).to receive(:list_all_users).and_return([friend1, friend2])
+      allow(UserFacade).to receive(:list_all_users).and_return([@friend1, @friend2])
       visit "/movies/#{dracula[:id]}"
 
-      expect(page).to have_content(friend1.name)
-      expect(page).to have_content(friend2.name)
+      expect(page).to have_content(@friend1.name)
+      expect(page).to have_content(@friend2.name)
     end
 
     it 'has a checkbox and button that you can use to make recommendations' do
-      friend1_data = {
-        "id": 2,
-        "type": 'user',
-        "attributes": {
-          "email": 'dracula@hammer.com',
-          "name": 'Christopher Lee'
-        }
-      }
-      friend2_data = {
-        "id": 3,
-        "type": 'user',
-        "attributes": {
-          "email": 'helsing@hammer.com',
-          "name": 'Peter Cushing'
-        }
-      }
-      friend1 = User.new(friend1_data)
-      friend2 = User.new(friend2_data)
-      allow(UserFacade).to receive(:list_all_users).and_return([friend1, friend2])
+      allow(UserFacade).to receive(:list_all_users).and_return([@friend1, @friend2])
       visit "/movies/#{dracula[:id]}"
 
-      within "#friend-id-#{friend1.id}" do
-        expect(page).to have_content(friend1.name)
+      within "#friend-id-#{@friend1.id}" do
+        expect(page).to have_content(@friend1.name)
         check('recommended[]')
       end
 
-      within "#friend-id-#{friend2.id}" do
-        expect(page).to have_content(friend2.name)
+      within "#friend-id-#{@friend2.id}" do
+        expect(page).to have_content(@friend2.name)
       end
 
       click_button('Recommend')
@@ -99,39 +68,26 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
   context 'logged in, no recommendation selections made' do
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '1', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+      users = UserFacade.list_all_users
+      @friend1 = users.first
+      @friend2 = users.second
+      test_user = users.third
+      hash = {'email' => test_user.email, 'name' => test_user.name, 'id' => test_user.id}
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(hash)
     end
 
     it 'returns a sad path error when trying to recommend something without selecting anybody' do
-      friend1_data = {
-        "id": 2,
-        "type": 'user',
-        "attributes": {
-          "email": 'dracula@hammer.com',
-          "name": 'Christopher Lee'
-        }
-      }
-      friend2_data = {
-        "id": 3,
-        "type": 'user',
-        "attributes": {
-          "email": 'helsing@hammer.com',
-          "name": 'Peter Cushing'
-        }
-      }
-      friend1 = User.new(friend1_data)
-      friend2 = User.new(friend2_data)
-      allow(UserFacade).to receive(:list_all_users).and_return([friend1, friend2])
+      allow(UserFacade).to receive(:list_all_users).and_return([@friend1, @friend2])
       visit "/movies/#{dracula[:id]}"
 
       expect(page).to_not have_content('You must select someone to make a recommendation.')
 
-      within "#friend-id-#{friend1.id}" do
-        expect(page).to have_content(friend1.name)
+      within "#friend-id-#{@friend1.id}" do
+        expect(page).to have_content(@friend1.name)
       end
 
-      within "#friend-id-#{friend2.id}" do
-        expect(page).to have_content(friend2.name)
+      within "#friend-id-#{@friend2.id}" do
+        expect(page).to have_content(@friend2.name)
       end
 
       click_button('Recommend')
