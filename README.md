@@ -19,7 +19,7 @@
 
 <!-- PROJECT OVERVIEW -->
 ## Project Overview
-
+Has a friend ever recommended an amazing movie to you, only for you to immediately forget about it?  Have you ever read an incredible book you swear someone suggested, but you can't remember who to thank? **The List** is here to help.    
 <!-- Built With -->
 ## Built With
 [<img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white"/>](https://www.ruby-lang.org/en/)<br>
