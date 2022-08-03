@@ -1,5 +1,9 @@
-    <h1><%= @user['name'] %>'s Dashboard</h1>
+    <h1><div class="container pt-5">
+    <%= @user['name'] %>'s Dashboard</h1>
+    </div>
+    <div class="container pt-2">
         <ul><h2>Here are your lists</h2></ul>
+        </div>
 <br>
     <div class="container pt-2">
         <div class="row align-items-start">
@@ -45,9 +49,9 @@
                 <% end %>
             </div>
             <div class="col">
-                <ul><h4><u>Movies You Have Recommended</u></h4></ul>
+                <ul><h4><u>Recommended Watchlist</u></h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
-                        <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id != @user["id"].to_i %>  
+                        <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>  
                             <ul>
                             <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                                 <% recommended_to = UserFacade.find_user(movie.recommended_to_id) %>
