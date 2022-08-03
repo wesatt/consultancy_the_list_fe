@@ -1,15 +1,17 @@
 <br>
 <br>
-<center>
-<h3 class="blue"><%= "#{@book.title}" %></h3>
-<% if @book.subtitle %>
-<h4 class="blue"><%= @book.subtitle %></h4>
-<% end %>
-</center>
-
 <div class="page-padding"
 <div class="bookDetails">
+  <center>
   <%= image_tag "#{@book.photo}"%>
+  <br>
+  <br>
+  <h3 class="blue"><%= "#{@book.title}" %></h3>
+  <% if @book.subtitle %>
+  <h4 class="blue"><%= @book.subtitle %></h4>
+  <% end %>
+  </center>
+  <br>
   <p> <strong class="blue">Author(s)</strong><br><%= @book.author.join(', ') %></p>
   <p> <strong class="blue">Published On</strong><br><%= @book.published_date %></p>
   <p> <strong class="blue">Description</strong><br><%= sanitize @book.description %></p>
