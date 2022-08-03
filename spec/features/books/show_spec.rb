@@ -14,7 +14,7 @@ RSpec.describe "Books show page", type: :feature do
       expect(page).to have_content("Brom")
       expect(page).to have_content("Terrific. A wild ride….I loved it.")
       expect(page).to have_content("3.5/5")
-      expect(page).to have_content("Number of Pages: 368")
+      expect(page).to have_content("Number of Pages368")
     end
   end
 
@@ -31,8 +31,8 @@ RSpec.describe "Books show page", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
       visit 'books/mEQ8DQYchtcC'
 
-      within '.bookDetails' do
-        expect(page.find('img')['src']).to match("/assets/No-Image-List*")
+      within '.page-padding' do
+      expect(page.find('img')['src']).to match("/assets/No-Image-List*")
       end
     end
   end

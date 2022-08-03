@@ -21,12 +21,12 @@ RSpec.describe "Books search results page", type: :feature do
     allow(BookFacade).to receive(:create_book_results).and_return(books)
     visit '/books?search=the+book+thief'
 
-    within page.all('.bookResults')[0] do
+    within '.bookResults-rk2MDQAAQBAJ' do
       expect(page).to have_link("The Book Thief")
       click_link("The Book Thief")
-
       expect(page).to have_current_path('/books/rk2MDQAAQBAJ') #identifier from api as id
     end
+
   end
 
   describe 'Edge Cases and Sad paths' do

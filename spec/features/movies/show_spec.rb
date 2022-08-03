@@ -27,7 +27,7 @@ RSpec.describe 'Movies Show Page', :vcr, type: :feature do
       expect(page).to have_content(dracula[:title])
       expect(page).to have_content(dracula[:overview])
       expect(page).to have_content(dracula[:release_date])
-      expect(page).to have_content(dracula[:vote_average])
+      expect(page).to have_content(dracula[:vote_average].round(1))
     end
 
     it 'has a list of friends that you can make recommendations to' do
