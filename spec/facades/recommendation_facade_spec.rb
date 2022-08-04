@@ -36,4 +36,17 @@ RSpec.describe RecommendationFacade, :vcr do
       :media_id, :title, :media_type, :recommended_by_id, :status, :user_id
     )
   end
+  it '.updates_recommendations(:status) returns an updated hash of the recommendation' do
+    params = {
+      id: '1',
+      status: "rejected"
+    }
+    current_user = {
+      'id' => '1'
+    }
+    updated_rec = RecommendationFacade.update_recomm_status(params, current_user)
+    expect(updated_rec).to be_a(Hash)
+    expect(updated_rec.keys).to include(:id, :media_type, :media_id, :status, :title)
+    expect(updated_rec[:status]).to eq("rejected")
+  end
 end

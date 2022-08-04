@@ -26,4 +26,11 @@ class RecommendationFacade
       RecommendationService.post_recommendation(data, rec_id)
     end
   end
+
+  def self.update_recomm_status(params, current_user)
+    data = {
+      status: params[:status],
+      id: params[:id]}
+    RecommendationService.update_recomm_status(data, current_user["id"])
+  end
 end

@@ -8,4 +8,9 @@ class RecommendationsController < ApplicationController
       redirect_to '/dashboard'
     end
   end
+
+  def update
+    RecommendationFacade.update_recomm_status(params, current_user)
+    redirect_to '/dashboard'
+  end
 end
