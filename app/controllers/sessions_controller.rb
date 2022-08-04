@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   def destroy
-    # reset_session Nope
+    reset_session
     # session.clear
-    session.destroy
+    session.delete(:user)
+    @current_user = nil
+    # session.destroy
     redirect_to '/'
   end
 end
