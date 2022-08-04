@@ -25,11 +25,19 @@ class Movie
     @original_title = data[:original_title]
     @overview = data[:overview]
     @popularity = data[:popularity]
-    @poster_path = data[:poster_path]
+    @poster_path = format_poster(data)
     @release_date = data[:release_date]
     @title = data[:title]
     @video = data[:video]
     @vote_average = data[:vote_average]
     @vote_count = data[:vote_count]
+  end
+
+  def format_poster(data)
+    if data.nil? || data[:poster_path].nil?
+      "No-Image-List.png"
+    else
+      "https://image.tmdb.org/t/p/w500#{data[:poster_path]}"
+    end
   end
 end
