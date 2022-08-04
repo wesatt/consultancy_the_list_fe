@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+<body>    
     <h1><div class="container pt-5">
     <%= @user['name'] %>'s Dashboard</h1>
     </div>
@@ -11,21 +14,37 @@
                 <ul><h4><u>Pending Movie Recommendations</u></h4></ul>
                 <% @recommendations[:movie].each do |movie|%>
                     <% if movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
+                        <%= button_to 'Accept', recommendation_path(movie.id), params: {status: "accepted"}, class: "button", method: :patch %>
+                        <%= button_to 'Reject', recommendation_path(movie.id), params: {status: "rejected"}, class: "button", method: :patch %>
+                        <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                         <ul>
                         <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
                         <%= %>
-                        <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                         <p>Recommended by: <%= recommended_by.name %>
                         </ul>
                     <% end %>
                 <% end %>
             </div>
+                <div class="col">
+                <ul><h4><u>Recommended Movies Watchlist</u></h4></ul>
+                    <% @recommendations[:movie].each do |movie|%>
+                        <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>
+                        <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
+                            <ul>
+                            <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
+                                <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
+                                <p>Recommended by: <%= recommended_by.name %></p>
+                            </ul>
+                        <% end %>
+                    <% end %>
+            </div>
             <div class="col">
                 <ul><h4><u>Your Watch List</u></h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
-                        <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i%>
+                        <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i && movie.status == "pending" %>
+                        <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
                             <ul>
-                            <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
+                            <%= link_to movie.title, "/movies/#{movie.media_id}" %>
                             </ul>
                         <% end %>
                     <% end %><br>
@@ -35,9 +54,9 @@
             <div class="col">
                 <ul><h4><u>Pending Book Recommendations</u></h4></ul>
                 <% @recommendations[:book].each do |book|%>
-                    <% if book.blank? %>
-                    <p> You currently have no book recommendations.</p>
-                        <% elsif book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
+                        <% if book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
+                        <%= button_to 'Accept', recommendation_path(book.id), params: {status: "accepted"}, class: "button", method: :patch %>
+                        <%= button_to 'Reject', recommendation_path(book.id), params: {status: "rejected"}, class: "button", method: :patch %>
                         <ul>
                             <%= link_to book.title, "/book/#{book.media_id}" %> &nbsp<br>
                             <% recommended_by = UserFacade.find_user(book.recommended_by_id) %>
@@ -46,17 +65,32 @@
                     <% end %>
                 <% end %>
             </div>
-            <div class="col">
-                <ul><h4><u>Recommended Watchlist</u></h4></ul>
-                    <% @recommendations[:movie].each do |movie|%>
-                        <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>
+                <div class="col">
+                <ul><h4><u>Recommended Reading list</u></h4></ul>
+                    <% @recommendations[:book].each do |book|%>
+                        <% if book.recommended_by_id != @user["id"].to_i && book.status == "accepted" %>
+                        <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
                             <ul>
-                            <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
-                                <% recommended_to = UserFacade.find_user(movie.recommended_to_id) %>
+                            <%= link_to book.title, "/books/#{book.media_id}" %> &nbsp<br>
+                                <% recommended_to = UserFacade.find_user(book.recommended_to_id) %>
                                 <p>Recommended to: <%= recommended_to.name %></p>
                             </ul>
                         <% end %>
                     <% end %>
             </div>
+            <div class="col">
+                <ul><h4><u>Your Reading List</u></h4></ul>
+                    <% @recommendations[:book].each do |book|%>
+                        <% if book.recommended_by_id == @user["id"].to_i && book.recommended_to_id == @user["id"].to_i && book.status == "pending"%>
+                        <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
+                            <ul>
+                            <%= link_to book.title, "/books/#{book.media_id}" %>
+                            </ul>
+                        <% end %>
+                    <% end %><br>
+            </div>
         </div>
     </div>
+
+</body>
+</html>
