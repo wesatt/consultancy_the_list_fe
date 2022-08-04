@@ -17,11 +17,6 @@
 
 <h1 class="blue">Recommend this movie to your friends</h1>
 
-<%# Or should we have a link here instead? %>
-<%# Benefits of link: only pass in one object from controller and keep things more RESTful %>
-<%# Benefits of keeping it here: Smoother user experience, less views to manage %>
-<%# Add friends search %>
-
 <%= form_with url: "/recommendations", method: :post, local: true do |f| %>
 
     <p id="friend-id-<%= current_user['id'] %>">
