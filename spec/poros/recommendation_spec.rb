@@ -13,7 +13,8 @@ RSpec.describe Recommendation do
         media_type: 'movie',
         recommended_by_id: 13,
         status: 'pending',
-        user_id: 1
+        user_id: 1,
+        recommended_by_info: {name: 'Bugsy', email: 'not_the_bunny@tough-guy.net'}
       }
     }
     recommendation = Recommendation.new(movie_rec)

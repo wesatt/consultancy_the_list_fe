@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/logout', to: 'sessions#destroy'
 
-  get 'auth/google_oauth2/callback', to: 'users#index'
+  get 'auth/google_oauth2/callback', to: 'sessions#create'
 
   resources :movies, only: %i[index show]
 

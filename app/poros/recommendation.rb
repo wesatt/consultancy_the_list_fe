@@ -5,7 +5,9 @@ class Recommendation
               :media_type,
               :recommended_by_id,
               :status,
-              :recommended_to_id
+              :recommended_to_id,
+              :recommended_by_name,
+              :recommended_by_email
 
   def initialize(data)
     @id = data[:id]
@@ -15,5 +17,7 @@ class Recommendation
     @recommended_by_id = data[:attributes][:recommended_by_id]
     @status = data[:attributes][:status]
     @recommended_to_id = data[:attributes][:user_id]
+    @recommended_by_name = data[:attributes][:recommended_by_info][:name]
+    @recommended_by_email = data[:attributes][:recommended_by_info][:email]
   end
 end

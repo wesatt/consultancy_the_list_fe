@@ -18,8 +18,7 @@
                     <ul>
                       <div id="pendingMovieEntry-<%= movie.id %>"
                         <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
-                          <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
-                          <p>Recommended by: <%= recommended_by.name %></p>
+                          <p>Recommended by: <%= movie.recommended_by_name %></p>
                             <div class="btn-group">
                             <%= button_to 'Accept', recommendation_path(movie.id), params: {status: "accepted"}, class: "button", method: :patch %>
                             <%= button_to 'Reject', recommendation_path(movie.id), params: {status: "rejected"}, class: "button", method: :patch %>
@@ -35,8 +34,7 @@
                         <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>
                             <ul>
                             <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
-                                <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
-                                <p>Recommended by: <%= recommended_by.name %></p>
+                                <p>Recommended by: <%= movie.recommended_by_name %></p>
                                 <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
                             </ul>
                         <% end %>
@@ -61,8 +59,7 @@
                         <% if book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
                         <ul>
                             <%= link_to book.title, "/book/#{book.media_id}" %> &nbsp<br>
-                            <% recommended_by = UserFacade.find_user(book.recommended_by_id) %>
-                            <p>Recommended by: <%= recommended_by.name %>
+                            <p>Recommended by: <%= book.recommended_by_name %>
                               <div class="btn-group">
                               <%= button_to 'Accept', recommendation_path(book.id), params: {status: "accepted"}, class: "button", method: :patch %>
                               <%= button_to 'Reject', recommendation_path(book.id), params: {status: "rejected"}, class: "button", method: :patch %>
@@ -78,8 +75,7 @@
                         <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
                             <ul>
                             <%= link_to book.title, "/books/#{book.media_id}" %> &nbsp<br>
-                                <% recommended_to = UserFacade.find_user(book.recommended_to_id) %>
-                                <p>Recommended to: <%= recommended_to.name %></p>
+                                <p>Recommended to: <%= book.recommended_by_name %></p>
                             </ul>
                         <% end %>
                     <% end %>
