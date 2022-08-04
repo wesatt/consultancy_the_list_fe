@@ -68,7 +68,7 @@ RSpec.describe "Books show page", type: :feature do
 
       visit 'books/mEQ8DQYchtcC'
 
-      within '.page-padding' do
+      within '.bookCover' do
       expect(page.find('img')['src']).to match("/assets/No-Image-List*")
       end
     end

@@ -15,7 +15,7 @@ RSpec.describe 'Welcome Page', type: :feature do
     it 'has a button to login or sign up with google' do
       visit '/'
 
-      expect(page).to have_button('Login with Google')
+      expect(page).to have_link('Log In')
     end
 
     it 'sign in button redirects to google oauth page', :vcr do
@@ -26,7 +26,7 @@ RSpec.describe 'Welcome Page', type: :feature do
 
       visit '/'
 
-      click_button('Login with Google')
+      click_link('Log In')
 
       expect(page).to have_current_path('/dashboard')
     end

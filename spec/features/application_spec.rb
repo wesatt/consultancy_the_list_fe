@@ -13,7 +13,7 @@ RSpec.describe 'the application layout page', type: :feature do
     click_link("Log Out")
 
     expect(current_path).to eq('/')
-    expect(page).to_not have_button("Log Out")
-    expect(page).to have_button("Login with Google")
+    expect(page).to_not have_link("Log Out")
+    expect(page).to have_link("Log In")
   end
 end
