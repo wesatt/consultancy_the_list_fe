@@ -8,13 +8,13 @@ RSpec.describe MovieService, :vcr do
   end
 
   describe 'movie endpoints' do
-    it '.top_rated returns a json for the top rated movies for browsing' do
-      json_return = MovieService.top_rated
-
-      expect(json_return).to be_a(Array)
-      expect(json_return.first).to be_a(Hash)
-      expect(json_return.first).to include(:id, :title, :poster_path, :overview, :vote_average)
-    end
+    # it '.top_rated returns a json for the top rated movies for browsing' do
+    #   json_return = MovieService.top_rated
+    #
+    #   expect(json_return).to be_a(Array)
+    #   expect(json_return.first).to be_a(Hash)
+    #   expect(json_return.first).to include(:id, :title, :poster_path, :overview, :vote_average)
+    # end
 
     it '.movie_lookup(id) returns a json for the specific movie' do
       json_return = MovieService.movie_lookup(11_868)

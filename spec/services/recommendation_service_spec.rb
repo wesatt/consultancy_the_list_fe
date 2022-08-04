@@ -33,4 +33,17 @@ RSpec.describe RecommendationService, :vcr do
       :media_id, :title, :media_type, :recommended_by_id, :status, :user_id
     )
   end
+
+  it 'can return a hash from an update call' do
+    params = {
+      id: '1',
+      status: "rejected"
+    }
+    user_id = '1'
+
+    hash = RecommendationService.update_recomm_status(params, user_id)
+
+    expect(hash).to be_a(Hash)
+    expect(hash.keys).to include(:id, :status, :media_type, :media_id, :title, :recommended_by_id, :user_id)
+  end
 end
