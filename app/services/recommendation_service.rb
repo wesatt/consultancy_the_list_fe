@@ -12,4 +12,12 @@ class RecommendationService < BaseService
     end
     get_json(response)
   end
+
+  def self.update_recomm_status(data, user_id)
+    response = conn_list.patch("users/#{user_id})/recommendations/#{data[:id]}") do |req|
+      req.params = data
+      req.headers['Content-Type'] = 'application/json'
+    end
+    get_json(response)
+  end
 end
