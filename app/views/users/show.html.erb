@@ -1,45 +1,47 @@
-<!DOCTYPE html>
 <html>
-<body>    
-    <h1><div class="container pt-5">
-    <%= @user['name'] %>'s Dashboard</h1>
+<body>
+  <center>
+    <div class="container pt-5">
+    <h1 class="blue"><%= @user['name'] %>'s Dashboard</h1>
     </div>
     <div class="container pt-2">
-        <ul><h2>Here are your lists</h2></ul>
+        <ul><h2 class="blue">Here are your lists</h2></ul>
         </div>
+        </center>
 <br>
     <div class="container pt-2">
         <div class="row align-items-start">
             <div class="col">
-                <ul><h4><u>Pending Movie Recommendations</u></h4></ul>
+                <ul><h4>Pending Movie Recommendations</h4></ul>
                 <% @recommendations[:movie].each do |movie|%>
                     <% if movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
-                        <%= button_to 'Accept', recommendation_path(movie.id), params: {status: "accepted"}, class: "button", method: :patch %>
-                        <%= button_to 'Reject', recommendation_path(movie.id), params: {status: "rejected"}, class: "button", method: :patch %>
+                    <ul>
                         <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
-                        <ul>
-                        <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
-                        <%= %>
-                        <p>Recommended by: <%= recommended_by.name %>
+                          <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
+                          <p>Recommended by: <%= recommended_by.name %></p>
+                            <div class="btn-group">
+                            <%= button_to 'Accept', recommendation_path(movie.id), params: {status: "accepted"}, class: "button", method: :patch %>
+                            <%= button_to 'Reject', recommendation_path(movie.id), params: {status: "rejected"}, class: "button", method: :patch %>
+                            </div>
                         </ul>
                     <% end %>
                 <% end %>
             </div>
                 <div class="col">
-                <ul><h4><u>Recommended Movies Watchlist</u></h4></ul>
+                <ul><h4>Recommended Movies Watchlist</h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
                         <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>
-                        <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
                             <ul>
                             <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                                 <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
                                 <p>Recommended by: <%= recommended_by.name %></p>
+                                <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
                             </ul>
                         <% end %>
                     <% end %>
             </div>
             <div class="col">
-                <ul><h4><u>Your Watch List</u></h4></ul>
+                <ul><h4>Your Watch List</h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
                         <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i && movie.status == "pending" %>
                         <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
@@ -52,21 +54,23 @@
         </div>
         <div class="row align-items-start">
             <div class="col">
-                <ul><h4><u>Pending Book Recommendations</u></h4></ul>
+                <ul><h4>Pending Book Recommendations</h4></ul>
                 <% @recommendations[:book].each do |book|%>
                         <% if book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
-                        <%= button_to 'Accept', recommendation_path(book.id), params: {status: "accepted"}, class: "button", method: :patch %>
-                        <%= button_to 'Reject', recommendation_path(book.id), params: {status: "rejected"}, class: "button", method: :patch %>
                         <ul>
                             <%= link_to book.title, "/book/#{book.media_id}" %> &nbsp<br>
                             <% recommended_by = UserFacade.find_user(book.recommended_by_id) %>
                             <p>Recommended by: <%= recommended_by.name %>
+                              <div class="btn-group">
+                              <%= button_to 'Accept', recommendation_path(book.id), params: {status: "accepted"}, class: "button", method: :patch %>
+                              <%= button_to 'Reject', recommendation_path(book.id), params: {status: "rejected"}, class: "button", method: :patch %>
+                              </div>
                         </ul>
                     <% end %>
                 <% end %>
             </div>
                 <div class="col">
-                <ul><h4><u>Recommended Reading list</u></h4></ul>
+                <ul><h4>Recommended Reading list</h4></ul>
                     <% @recommendations[:book].each do |book|%>
                         <% if book.recommended_by_id != @user["id"].to_i && book.status == "accepted" %>
                         <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
@@ -79,7 +83,7 @@
                     <% end %>
             </div>
             <div class="col">
-                <ul><h4><u>Your Reading List</u></h4></ul>
+                <ul><h4>Your Reading List</h4></ul>
                     <% @recommendations[:book].each do |book|%>
                         <% if book.recommended_by_id == @user["id"].to_i && book.recommended_to_id == @user["id"].to_i && book.status == "pending"%>
                         <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
@@ -91,6 +95,8 @@
             </div>
         </div>
     </div>
-
+    <center>
+      <img src="https://user-images.githubusercontent.com/92293363/182939272-9cbdf4e1-610d-412d-8a0a-3d2a4ca7e95b.png" class="rounded" alt="Cinque Terre" width="304" height="236">
+    </center>
 </body>
 </html>
