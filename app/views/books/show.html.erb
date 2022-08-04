@@ -1,8 +1,9 @@
 <br>
 <br>
-<div class="page-padding"
-  <center>
-  <%= image_tag "#{@book.photo}"%>
+<center>
+  <div class="bookCover">
+    <%= image_tag "#{@book.photo}"%>
+  </div>
   <br>
   <br>
   <h3 class="blue"><%= "#{@book.title}" %></h3>
@@ -10,13 +11,13 @@
   <h4 class="blue"><%= @book.subtitle %></h4>
   <% end %>
   </center>
+  <div class="page-padding"
   <br>
   <p> <strong class="blue">Author(s)</strong><br><%= @book.author.join(', ') %></p>
   <p> <strong class="blue">Published On</strong><br><%= @book.published_date %></p>
   <p> <strong class="blue">Description</strong><br><%= sanitize @book.description %></p>
   <p> <strong class="blue">Number of Pages</strong><br><%= @book.page_count %></p>
   <p> <strong class="blue">Average Rating</strong><br><%= @book.average_rating %>/5</p>
-</div>
 
 <h1 class="blue">Recommend this book to your friends</h1>
 
@@ -38,3 +39,4 @@
   <%= f.hidden_field :media_type, value: "book" %>
   <%= f.submit "Recommend" %>
 <% end %>
+</div>
