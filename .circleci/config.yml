@@ -41,9 +41,6 @@ jobs: # a collection of steps
           RAILS_ENV: test
       - image: circleci/postgres:11 # database image
         environment: # environment variables for database, it is kind of obvious but it is important that they match with your test config in database.yml
-          POSTGRES_USER: [your_pg_user]
-          POSTGRES_DB: [your_pg_db_name]
-          POSTGRES_PASSWORD: [your_pg_db_name]
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       # Which version of bundler?
@@ -54,14 +51,14 @@ jobs: # a collection of steps
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
-            - [your-app-name]-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - [your-app-name]-bundle-v2-
+            - the-list-fe-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - the-list-fe-bundle-v2-
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle check --path vendor/bundle || bundle install --deployment
       # Store bundle cache for Ruby dependencies
       - save_cache:
-          key: [your-app-name]-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: the-list-fe-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
