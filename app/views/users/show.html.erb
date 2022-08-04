@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body>    
+<body>
     <h1><div class="container pt-5">
     <%= @user['name'] %>'s Dashboard</h1>
     </div>
@@ -10,22 +10,23 @@
 <br>
     <div class="container pt-2">
         <div class="row align-items-start">
-            <div class="col">
+            <div class="colPendMovie">
                 <ul><h4><u>Pending Movie Recommendations</u></h4></ul>
                 <% @recommendations[:movie].each do |movie|%>
                     <% if movie.status == "pending" && movie.recommended_by_id != @user["id"].to_i %>
+                      <div id="pendingMovieEntry-<%= movie.id %>">
                         <%= button_to 'Accept', recommendation_path(movie.id), params: {status: "accepted"}, class: "button", method: :patch %>
                         <%= button_to 'Reject', recommendation_path(movie.id), params: {status: "rejected"}, class: "button", method: :patch %>
                         <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                         <ul>
                         <% recommended_by = UserFacade.find_user(movie.recommended_by_id) %>
-                        <%= %>
                         <p>Recommended by: <%= recommended_by.name %>
                         </ul>
+                      </div>
                     <% end %>
                 <% end %>
             </div>
-                <div class="col">
+                <div class="colRecMovie">
                 <ul><h4><u>Recommended Movies Watchlist</u></h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
                         <% if movie.recommended_by_id != @user["id"].to_i && movie.status == "accepted" %>
@@ -38,7 +39,7 @@
                         <% end %>
                     <% end %>
             </div>
-            <div class="col">
+            <div class="colWatchList">
                 <ul><h4><u>Your Watch List</u></h4></ul>
                     <% @recommendations[:movie].each do |movie|%>
                         <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i && movie.status == "pending" %>
@@ -51,7 +52,7 @@
             </div>
         </div>
         <div class="row align-items-start">
-            <div class="col">
+            <div class="colPendBook">
                 <ul><h4><u>Pending Book Recommendations</u></h4></ul>
                 <% @recommendations[:book].each do |book|%>
                         <% if book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
@@ -65,7 +66,7 @@
                     <% end %>
                 <% end %>
             </div>
-                <div class="col">
+                <div class="colRecRead">
                 <ul><h4><u>Recommended Reading list</u></h4></ul>
                     <% @recommendations[:book].each do |book|%>
                         <% if book.recommended_by_id != @user["id"].to_i && book.status == "accepted" %>
@@ -78,7 +79,7 @@
                         <% end %>
                     <% end %>
             </div>
-            <div class="col">
+            <div class="colReadList">
                 <ul><h4><u>Your Reading List</u></h4></ul>
                     <% @recommendations[:book].each do |book|%>
                         <% if book.recommended_by_id == @user["id"].to_i && book.recommended_to_id == @user["id"].to_i && book.status == "pending"%>
