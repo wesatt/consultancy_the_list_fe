@@ -6,8 +6,8 @@ class Recommendation
               :recommended_by_id,
               :status,
               :recommended_to_id,
-              :recommended_by_email,
-              :recommended_by_name
+              :recommended_by_name,
+              :recommended_by_email
 
   def initialize(data)
     @id = data[:id]
