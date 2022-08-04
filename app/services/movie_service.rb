@@ -1,9 +1,9 @@
 class MovieService < BaseService
-  def self.top_rated
-    response = conn_tmdb.get('movie/top_rated')
-    json = get_json(response)
-    json[:results]
-  end
+  # def self.top_rated
+  #   response = conn_tmdb.get('movie/top_rated')
+  #   json = get_json(response)
+  #   json[:results]
+  # end
 
   def self.movie_lookup(id)
     response = conn_tmdb.get("movie/#{id}")
