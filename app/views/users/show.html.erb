@@ -34,7 +34,9 @@
                     <ul>
                         <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br>
                         <p>Recommended by: <%= movie.recommended_by_name %></p>
-                        <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
+                        <div class="btn-group">
+                          <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
+                        </div>
                     </ul>
                 <% end %>
             <% end %>
@@ -43,9 +45,11 @@
             <ul><h4>Your Watch List</h4></ul>
             <% @recommendations[:movie].each do |movie|%>
                 <% if movie.recommended_by_id == @user["id"].to_i && movie.recommended_to_id == @user["id"].to_i && movie.status == "pending" %>
-                    <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
                     <ul>
-                        <%= link_to movie.title, "/movies/#{movie.media_id}" %>
+                        <%= link_to movie.title, "/movies/#{movie.media_id}" %> &nbsp<br> &nbsp<br>
+                        <div class="btn-group">
+                          <%= button_to 'Complete', recommendation_path(movie.id), params: {status: "completed"}, class: "button", method: :patch %>
+                        </div>
                     </ul>
                 <% end %>
             <% end %><br>
@@ -57,7 +61,7 @@
             <% @recommendations[:book].each do |book|%>
                 <% if book.status == "pending" && book.recommended_by_id != @user["id"].to_i %>
                     <ul>
-                        <%= link_to book.title, "/book/#{book.media_id}" %> &nbsp<br>
+                        <%= link_to book.title, "/books/#{book.media_id}" %> &nbsp<br>
                         <p>Recommended by: <%= book.recommended_by_name %>
                         <div class="btn-group">
                             <%= button_to 'Accept', recommendation_path(book.id), params: {status: "accepted"}, class: "button", method: :patch %>
@@ -71,10 +75,12 @@
             <ul><h4>Recommended Reading list</h4></ul>
             <% @recommendations[:book].each do |book|%>
                 <% if book.recommended_by_id != @user["id"].to_i && book.status == "accepted" %>
-                    <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
                     <ul>
                         <%= link_to book.title, "/books/#{book.media_id}" %> &nbsp<br>
                         <p>Recommended to: <%= book.recommended_by_name %></p>
+                        <div class="btn-group">
+                          <%= button_to 'Complete', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
+                        </div>
                     </ul>
                 <% end %>
             <% end %>
@@ -83,15 +89,17 @@
             <ul><h4>Your Reading List</h4></ul>
             <% @recommendations[:book].each do |book|%>
                 <% if book.recommended_by_id == @user["id"].to_i && book.recommended_to_id == @user["id"].to_i && book.status == "pending"%>
-                    <%= button_to 'Completed', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
                     <ul>
-                        <%= link_to book.title, "/books/#{book.media_id}" %>
+                        <%= link_to book.title, "/books/#{book.media_id}" %> &nbsp<br> &nbsp<br>
+                        <div class="btn-group">
+                          <%= button_to 'Complete', recommendation_path(book.id), params: {status: "completed"}, class: "button", method: :patch %>
+                        </div>
                     </ul>
                 <% end %>
             <% end %><br>
         </div>
     </div>
-</div>
+</div><br>
 <center>
     <img src="https://user-images.githubusercontent.com/92293363/182939272-9cbdf4e1-610d-412d-8a0a-3d2a4ca7e95b.png" class="rounded" alt="Cinque Terre" width="304" height="236">
 </center>
