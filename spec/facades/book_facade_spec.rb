@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserFacade, :vcr do
+RSpec.describe BookFacade, :vcr do
   it 'creates an array of book poros from a search call' do
     books = BookFacade.create_book_results("The Book Thief")
 
