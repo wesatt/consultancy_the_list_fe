@@ -41,21 +41,21 @@ RSpec.describe 'User Dashboard Page', :vcr, type: :feature do
     it 'has a button to change a recs status' do
       visit '/dashboard'
 
-      within '.colPendMovie' do
+      within '#pendMovie' do
         expect(page).to have_button("Accept")
         expect(page).to have_button("Reject")
       end
 
-      within ".colPendBook" do
+      within "#pendRead" do
         expect(page).to have_button("Accept")
         expect(page).to have_button("Reject")
       end
 
-      within '.colRecRead' do
+      within '#recRead' do
         expect(page).to have_button("Complete")
       end
 
-      within ".colRecMovie" do
+      within "#recMovie" do
         expect(page).to have_button("Complete")
       end
 
@@ -64,13 +64,13 @@ RSpec.describe 'User Dashboard Page', :vcr, type: :feature do
     it 'will move the rec to the appropriate colomn after button is pushed' do
       visit '/dashboard'
 
-      within '.colPendMovie' do
+      within '#pendMovie' do
         within "#pendingMovieEntry-#{@test_movie.id}" do
           click_button("Accept")
         end
       end
 
-      within ".colRecMovie" do
+      within "#recMovie" do
         expect(page).to have_content(@test_movie.title)
       end
     end
