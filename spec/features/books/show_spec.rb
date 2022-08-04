@@ -5,7 +5,12 @@ RSpec.describe "Books show page", type: :feature do
   describe 'happy paths' do
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:session_auth).and_return(true)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user = {'id' => '13', 'name' => 'Wes', 'email' => 'someguy@dude.net'})
+      users = UserFacade.list_all_users
+      @friend1 = users.first
+      @friend2 = users.second
+      test_user = users.third
+      @hash = {'email' => test_user.email, 'name' => test_user.name, 'id' => test_user.id}
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@hash)
     end
 
     it 'displays more details about a single book', :vcr do
@@ -21,10 +26,7 @@ RSpec.describe "Books show page", type: :feature do
 
     describe 'recommendations section', :vcr do
       before(:each) do
-        users = UserFacade.list_all_users
-
-        @friend1 = users.first
-        @friend2 = users.second
+        # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@hash)
         visit '/books/LnVPj0lN0eIC'
       end
 
