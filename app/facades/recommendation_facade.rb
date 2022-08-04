@@ -10,11 +10,6 @@ class RecommendationFacade
     media
   end
 
-  # def self.get_collection_recs(id, media)
-  #   x = get_user_recs(id)
-  #   x.collect(|poro| poro.media_type == media)
-  # end
-
   def self.create_recommendations(params, current_user)
     data = {
       media_id: params[:media_id],
